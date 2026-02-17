@@ -1,0 +1,26 @@
+name: run jest tests
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+jobs:
+    tests:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: checkout repository
+              uses: actions/checkout@v3
+
+            - name: Use node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "25"
+
+            - name: Install Dependencies
+              run: npm install
+
+            - name: Run jest Tests
+              run: npm run test
